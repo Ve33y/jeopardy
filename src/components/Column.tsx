@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyledColumn } from './Column.styled';
 import Card from './Card';
 
-type Props = {
-  category: String;
+type Props = {}
+type State = {
+  cardData: [];
 }
 
-const Column = ({ category }: Props) => {
-  return (
-    <StyledColumn>
-    <h1>{category}</h1>
-    <Card amount="$100"/>
-    <Card amount="$100"/>
-    <Card amount="$100"/>
-    <Card amount="$100"/>
-    <Card amount="$100"/>
-    </StyledColumn>
-  )
+class Column extends Component <Props, State> {
+  constructor(props: Props){
+    super(props);
+
+    this.state = {
+      cardData: [],
+    }
+  }
+
+  render(){
+    
+    return (
+      <StyledColumn>
+      <h1>hey</h1>
+      <Card amount="$100"/>
+      <Card amount="$100"/>
+      <Card amount="$100"/>
+      <Card amount="$100"/>
+      <Card amount="$100"/>
+      </StyledColumn>
+    )
+  }
 }
 
 export default Column;

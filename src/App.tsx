@@ -7,12 +7,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Column category="A"/>
-        <Column category="B"/>
-        <Column category="C"/>
-        <Column category="D"/>
-        <Column category="E"/>
-        <Column category="F"/>
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
       </header>
     </div>
   );
