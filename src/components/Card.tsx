@@ -2,13 +2,15 @@ import React from 'react';
 import { StyledCard } from './Card.styled'
 
 type Props = {
-  amount: String;
+  value?: number;
+  clues: [];
 }
 
-const Card = ({ amount }: Props) => {
+const Card = ({ value, clues }: Props) => {
+  console.log('these are my clues', clues)
   return (
     <StyledCard>
-      {amount}
+      {value}
     </StyledCard>
   )
 }

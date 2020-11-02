@@ -4,7 +4,9 @@ import Card from './Card';
 
 type Props = {}
 type State = {
-  cardData: [];
+  cardData: any[];
+  error: boolean;
+  loading: boolean;
 }
 
 class Column extends Component <Props, State> {
@@ -13,21 +15,56 @@ class Column extends Component <Props, State> {
 
     this.state = {
       cardData: [],
+      error: false,
+      loading: true,
     }
   }
 
+  getData(){
+    const id = Math.random() * 500;
+    this.setState({ error: false });
+    fetch(`http://jservice.io/api/category?id=${id}`)
+    .then(res => res.json())
+    .then(categoryInfo => this.setState({
+      cardData: [categoryInfo],
+      loading: false,
+    }))
+    .catch(err => {
+      console.log(err);
+      this.setState({ 
+        error: true, 
+        loading: false 
+      })
+    })
+  }
+
+  componentDidMount(){
+    this.getData();   
+  }
+
   render(){
+    const catToDisplay= Object.assign({}, this.state.cardData[0])
     
-    return (
+    const fillCards = (cards: any[] = [], index = 0) => {
+      console.log('here')
+      while (index < 5){
+        cards.push(<Card clues={catToDisplay.clues} value={catToDisplay.clues[index].value}/>);
+        index++;
+      } 
+      return cards;
+    };
+
+    if (this.state.error) {
+      return <p>Oops</p>;
+    }
+    return this.state.loading ? (<p className="para">Loading...</p>)
+      : 
+      (
       <StyledColumn>
-      <h1>hey</h1>
-      <Card amount="$100"/>
-      <Card amount="$100"/>
-      <Card amount="$100"/>
-      <Card amount="$100"/>
-      <Card amount="$100"/>
+        <h3>{catToDisplay.title}</h3>
+        {fillCards()}
       </StyledColumn>
-    )
+      );
   }
 }
 
