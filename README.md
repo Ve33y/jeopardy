@@ -4,6 +4,9 @@ Jeopardy - esque trivia grid using jService API.
 
 In the project directory, you can run:
 
+### `npm install`
+to install dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.\
