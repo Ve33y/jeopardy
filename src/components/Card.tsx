@@ -36,16 +36,17 @@ class Card extends Component<Props, State> {
 
 
   render(){
-
+    // styled card but styled back and styled front
     return (
-      this.state.answered ? 
-      <StyledCard onClick={e => this.flip()}>
-      {this.props.q}
-       </StyledCard> 
-  :
-      <StyledCard onClick={e => this.flip()}>
-          {`$${this.props.value}`}
-      </StyledCard> 
+      this.state.answered 
+        ? 
+        <StyledBack onClick={e => this.flip()}>
+          {this.props.q}
+        </StyledBack> 
+          :
+          <StyledCard onClick={e => this.flip()}>
+            {`$${this.props.value}`}
+          </StyledCard> 
     )
   }
 }
