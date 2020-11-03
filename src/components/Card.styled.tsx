@@ -5,3 +5,9 @@ export const StyledCard = styled.div`
   padding: 50px;
   border-style: solid;
 `;
+
+export const StyledBack = styled.div`
+  color: blue;
+  display: flex;
+  transform: translate3d(10px 10px 10px)
+`

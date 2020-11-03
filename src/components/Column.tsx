@@ -45,10 +45,17 @@ class Column extends Component <Props, State> {
   render(){
     const catToDisplay= Object.assign({}, this.state.cardData[0])
     
-    const fillCards = (cards: any[] = [], index = 0) => {
+    const fillCards = (cards: any[] = [], index = 0, value = 200) => {
       console.log('here')
-      while (index < 5){
-        cards.push(<Card clues={catToDisplay.clues} value={catToDisplay.clues[index].value}/>);
+      while (cards.length < 5){
+        cards.push(
+        <Card 
+          key={index.toString()} 
+          q={catToDisplay.clues[index].question} 
+          a={catToDisplay.clues[index].answer}
+          value={value}
+        />);
+        value += 200
         index++;
       } 
       return cards;
@@ -57,14 +64,15 @@ class Column extends Component <Props, State> {
     if (this.state.error) {
       return <p>Oops</p>;
     }
-    return this.state.loading ? (<p className="para">Loading...</p>)
-      : 
-      (
-      <StyledColumn>
-        <h3>{catToDisplay.title}</h3>
-        {fillCards()}
-      </StyledColumn>
-      );
+    return this.state.loading ? 
+      (<p className="para">Loading...</p>)
+        : 
+          (
+          <StyledColumn>
+            <h4>{catToDisplay.title}</h4>
+            {fillCards()}
+          </StyledColumn>
+          );
   }
 }
 
